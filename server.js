@@ -8,7 +8,7 @@ io.on('connection', (socket) => {
   console.log('a user connected');
 
   socket.on('newMsg', (msg) => {
-    console.log(`Emitiendo nuevo mensaje: ${msg}`);
+    console.log(`Emitiendo nuevo mensaje: ${JSON.stringify(msg)}`);
     io.emit('newMsg', msg);
   });
 
@@ -20,6 +20,11 @@ io.on('connection', (socket) => {
   socket.on('disconnected', () => {
     console.log("Disconeccted");
   });
+
+  socket.on("pageChange",(info) =>{
+    console.log(`Emitiendo cambio pagima: ${JSON.stringify(info)}`);
+    io.emit('pageChange', info);
+  })
 
 });
 
